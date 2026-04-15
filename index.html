@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--#Include File ="adovbs.inc"-->	
+<!--#Include File ="Global.asa"-->
+<!--#Include File ="eRaider.asp"-->	
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,31 +45,123 @@ body{
 
 /* Top header */
 .rawls-header{
-  background: linear-gradient(90deg, #0b0b0c 0%, #121316 50%, #0b0b0c 100%);
+  background: linear-gradient(90deg, #07080a 0%, #101217 45%, #0a0b0e 100%);
   border-bottom: 4px solid var(--rawls-red);
-  color:#fff;
-  padding:12px 22px;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  box-shadow: 0 6px 20px rgba(0,0,0,.18);
+  padding: 16px 28px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.22);
 }
+
 .rawls-header-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  max-width:1320px;
-  margin:0 auto;
-  flex-wrap:wrap;
+  width: min(96vw, 1800px) !important;
+  max-width: none !important;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: nowrap;
 }
 
-.rawls-header-left{display:flex;align-items:center;gap:14px;min-width:0}
-.rawls-logo{height:57px;width:auto;object-fit:contain;flex-shrink:0}
-.rawls-header-brand{display:flex;flex-direction:column;line-height:1.15}
-.rawls-header-brand-main{font-weight:800;font-size:1.05rem;letter-spacing:.02em}
-.rawls-header-brand-sub{font-size:.78rem;color:#cfcfd4;letter-spacing:.08em;text-transform:uppercase}
+.rawls-header-left{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
 
+.rawls-logo{
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.rawls-header-brand{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.1;
+}
+
+.rawls-header-brand-main{
+  font-size: 1.28rem;
+  font-weight: 850;
+  color: #fff;
+  letter-spacing: .01em;
+}
+
+.rawls-header-brand-sub{
+  margin-top: 4px;
+  font-size: .78rem;
+  color: rgba(255,255,255,.78);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.rawls-header-actions{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.rawls-header-actions .header-btn{
+  min-height: 38px;
+  padding: 8px 14px;
+  font-size: .82rem;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  backdrop-filter: blur(8px);
+}
+
+.rawls-header-actions .header-btn:hover{
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.32);
+  transform: translateY(-1px);
+}
+
+.rawls-header-actions .header-btn.icon{
+  width: 38px;
+  min-width: 38px;
+  height: 38px;
+  padding: 0;
+}
+
+.icon-svg{
+  width: 16px;
+  height: 16px;
+}
+
+/* Better balance on smaller screens */
+@media (max-width: 980px){
+  .rawls-header-inner{
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .rawls-header-left{
+    flex: 1 1 100%;
+  }
+
+  .rawls-header-actions{
+    width: 100%;
+    justify-content: flex-start;
+    padding-top: 4px;
+  }
+
+  .rawls-logo{
+    height: 56px;
+  }
+
+  .rawls-header-brand-main{
+    font-size: 1.12rem;
+  }
+}
     /* --- Make only action buttons less bold --- */
 
 /* Header buttons (New Submission / Request Modification) */
@@ -112,14 +208,14 @@ body{
 .icon-svg{width:16px;height:16px;fill:currentColor;display:block}
 
 /* App card */
-.app{
-  max-width:1320px;
-  margin:18px auto 32px;
-  background: var(--bg1);
-  border-radius: var(--radius);
-  border:1px solid var(--border);
-  box-shadow: var(--shadow);
-  overflow:hidden;
+.rawls-header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  width:min(100% - 4cm, 1800px);
+  margin:0 auto;
+  flex-wrap:wrap;
 }
 .app::before{
   content:"";
@@ -344,7 +440,7 @@ label{
   color:#51545f;
 }
 
-input[type="text"]{
+input[type=text]{
   padding:9px 10px;
   border-radius:10px;
   border:1px solid var(--border2);
@@ -352,7 +448,7 @@ input[type="text"]{
   background:#fbfbfc;
   transition:.15s;
 }
-input[type="text"]:focus{
+input[type=text]:focus{
   outline:none;
   border-color:var(--rawls-red);
   box-shadow:0 0 0 3px rgba(186,12,47,.14);
@@ -417,47 +513,75 @@ input[type="text"]:focus{
 .file-input{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px}
 
 /* Table */
-.table-container{
-  margin: 0 20px 20px;
-  border-radius: 12px;
-  border:1px solid var(--border);
-  background:#fff;
-  overflow:auto;
-  max-height: 540px;
-  box-shadow: 0 10px 26px rgba(15,20,35,.06);
+table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  min-width:1500px;   /* reduced so page fits better without bottom drag */
+  table-layout:fixed; /* makes column widths obey settings below */
 }
-table{width:100%;border-collapse:separate;border-spacing:0;min-width:1100px}
-th,td{
+
+th, td{
   padding:12px 12px;
   border-bottom:1px solid #eef0f4;
   text-align:left;
   vertical-align:top;
+  white-space:normal;
+  word-break:normal;
+  overflow-wrap:break-word;
+  line-height:1.35;
 }
-th{
-  background:#fbfbfd;
-  font-size:.74rem;
-  text-transform:uppercase;
-  letter-spacing:.10em;
-  color:#4c4f59;
-  position:sticky;
-  top:0;
-  z-index:10;
-  border-bottom:1px solid var(--border);
-}
-tr:nth-child(even){background:#fcfcfe}
-tr:hover{background:#f6f7fb}
 
-th.sortable{cursor:pointer;user-select:none;white-space:nowrap}
-.sort-arrow{
-  margin-left:8px;
-  border:1px solid var(--border2);
-  background:#fff;
-  border-radius:999px;
-  padding:2px 8px;
-  font-size:.85rem;
-  line-height:1;
-  cursor:pointer;
+th{
+  background: linear-gradient(180deg, #ffffff 0%, #f6f7fb 100%);
+  border-bottom: 1px solid var(--border);
+  font-size: .74rem;
+  text-transform: uppercase;
+  letter-spacing: .10em;
+  color: #4c4f59;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  line-height: 1.2;
+  vertical-align: middle;
+  padding: 10px 12px;
 }
+
+th.sortable{
+  cursor: pointer;
+  user-select: none;
+  position: sticky;
+  top: 0;
+  padding-right: 42px;
+}
+
+th .th-label{
+  display:block;
+  white-space:normal;
+  word-break:normal;
+  overflow-wrap:break-word;   /* lets "Last Name" wrap nicely */
+  line-height:1.2;
+}
+
+th .sort-arrow{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin: 0;
+  border: 1px solid var(--border2);
+  background: #fff;
+  border-radius: 999px;
+  font-size: .85rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
 th.sortable:hover .sort-arrow{border-color:var(--rawls-red);color:var(--rawls-red)}
 
 /* Badges + links */
@@ -663,67 +787,6 @@ h1{
   border: 1px solid var(--border2);
   transition: transform .14s ease, box-shadow .14s ease, background .14s ease, border-color .14s ease;
 }
-  /* ===============================
-   LOADING OVERLAY
-================================ */
-.loading-overlay{
-  position: fixed;
-  inset: 0;
-  z-index: 6000; /* above header + tour */
-  background: rgba(10,12,16,.35);
-  backdrop-filter: blur(6px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 1;
-  transition: opacity .18s ease;
-}
-
-.loading-overlay.hidden{
-  opacity: 0;
-  pointer-events: none;
-}
-
-.loading-card{
-  width: min(420px, calc(100vw - 28px));
-  background: #fff;
-  border: 1px solid rgba(16,17,20,.10);
-  border-radius: 16px;
-  box-shadow: 0 18px 48px rgba(0,0,0,.24);
-  padding: 16px 18px;
-  text-align: center;
-}
-
-.loading-title{
-  font-weight: 900;
-  margin-top: 10px;
-  color: #101114;
-}
-
-.loading-sub{
-  margin-top: 6px;
-  color: #5b5f6a;
-  font-size: .92rem;
-  line-height: 1.35;
-}
-
-.loading-spinner{
-  width: 42px;
-  height: 42px;
-  border-radius: 999px;
-  border: 4px solid rgba(16,17,20,.10);
-  border-top-color: var(--rawls-red);
-  margin: 0 auto;
-  animation: spin .8s linear infinite;
-}
-
-@keyframes spin{
-  to{ transform: rotate(360deg); }
-}
-
-@media (prefers-reduced-motion: reduce){
-  .loading-spinner{ animation: none; }
-}  
 .btn:hover{
   transform: translateY(-1px);
   box-shadow: var(--shadow-pop);
@@ -764,12 +827,12 @@ label{
 }
 
 /* Inputs: cleaner focus + subtle depth */
-input[type="text"]{
+input[type=text]{
   background: #ffffff;
   border: 1px solid var(--border2);
   box-shadow: 0 1px 0 rgba(16,17,20,.03);
 }
-input[type="text"]:focus{
+input[type=text]:focus{
   border-color: rgba(186,12,47,.85);
   box-shadow: 0 0 0 4px rgba(186,12,47,.14);
 }
@@ -833,7 +896,7 @@ tr:hover{
   background: rgba(16,17,20,.18);
   border-radius: 999px;
   border: 2px solid rgba(255,255,255,.9);
-}
+}                                                                                     
 .table-container::-webkit-scrollbar-track{ background: transparent; }
 /* Make <button class="header-btn"> look identical to <a class="header-btn"> */
 button.header-btn{
@@ -861,10 +924,13 @@ button.header-btn::-moz-focus-inner{
   *{ transition:none !important; animation:none !important; }
 }
 /* Make checked checkboxes Rawls red (instead of browser blue) */
-input[type="checkbox"]{
+input[type=checkbox]{
   accent-color: var(--rawls-red);
 }
-
+.badge,
+.link-btn{
+  white-space: nowrap;
+}
 /* ===============================
    TUTORIAL / WALKTHROUGH
 ================================ */
@@ -902,7 +968,67 @@ input[type="checkbox"]{
   z-index: 5002;
   padding: 14px 14px 12px;
 }
+/* ===============================
+   LOADING OVERLAY
+================================ */
+.loading-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 6000; /* above header + tour */
+  background: rgba(10,12,16,.35);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity .18s ease;
+}
 
+.loading-overlay.hidden{
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-card{
+  width: min(420px, calc(100vw - 28px));
+  background: #fff;
+  border: 1px solid rgba(16,17,20,.10);
+  border-radius: 16px;
+  box-shadow: 0 18px 48px rgba(0,0,0,.24);
+  padding: 16px 18px;
+  text-align: center;
+}
+
+.loading-title{
+  font-weight: 900;
+  margin-top: 10px;
+  color: #101114;
+}
+
+.loading-sub{
+  margin-top: 6px;
+  color: #5b5f6a;
+  font-size: .92rem;
+  line-height: 1.35;
+}
+
+.loading-spinner{
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 4px solid rgba(16,17,20,.10);
+  border-top-color: var(--rawls-red);
+  margin: 0 auto;
+  animation: spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{ transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .loading-spinner{ animation: none; }
+}
 
 .tour-title{
   font-weight: 900;
@@ -985,12 +1111,361 @@ input[type="checkbox"]{
 @media (prefers-reduced-motion: reduce){
   .tour-spotlight{ transition:none; }
 }
+/* Wrap all table headers */
+table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  min-width:1400px;
+  table-layout:auto;
+}
+th, td{
+  padding:12px 12px;
+  border-bottom:1px solid #eef0f4;
+  text-align:left;
+  vertical-align:top;
+}
 
+th{
+  background: linear-gradient(180deg, #ffffff 0%, #f6f7fb 100%);
+  border-bottom: 1px solid var(--border);
+  font-size: .74rem;
+  text-transform: uppercase;
+  letter-spacing: .10em;
+  color: #4c4f59;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 
-  </style>
+  white-space: normal;
+  word-break: keep-all;      /* prevents letter-by-letter breaks */
+  overflow-wrap: normal;     /* prevents forced word splitting */
+  line-height: 1.2;
+  vertical-align: middle;
+
+  height: auto;              /* remove fixed height */
+  min-height: 0;
+  max-height: none;
+  padding: 10px 12px;
+}
+
+th.sortable{
+  cursor: pointer;
+  user-select: none;
+  position: sticky;
+  top: 0;
+  padding-right: 42px;
+}
+
+th .th-label{
+  display:block;
+  white-space:normal;
+  word-break:keep-all;
+  overflow-wrap:normal;
+}
+th .sort-arrow{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin: 0;
+  vertical-align: middle;
+
+  border: 1px solid var(--border2);
+  background: #fff;
+  border-radius: 999px;
+  font-size: .85rem;
+  line-height: 1;
+  cursor: pointer;
+}  
+/* Column widths */
+thead th:nth-child(1),
+tbody td:nth-child(1){
+  width: 78px;   /* narrower so Last Name wraps */
+}
+
+thead th:nth-child(2),
+tbody td:nth-child(2){
+  width: 90px;
+}
+
+thead th:nth-child(4),
+tbody td:nth-child(4){
+  width: 260px;  /* wider Article Title column */
+}
+
+thead th:nth-child(5),
+tbody td:nth-child(5){
+  width: 170px;
+}
+.table-container{
+  width:100%;
+  overflow-x:auto;
+  overflow-y:visible;
+  position:relative;
+}
+
+.table-container table{
+  width: 100%;
+  min-width: 2100px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table-container th,
+.table-container td{
+  padding: 12px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.table-container th{
+  position: relative;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
+  line-height: 1.15;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.table-container th .th-label{
+  display: block;
+  padding-right: 22px;
+}
+
+.table-container th.sortable .sort-arrow{
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  font-size: 12px;
+}
+
+/* widths */
+.table-container th:nth-child(1),
+.table-container td:nth-child(1){ width: 110px; }
+
+.table-container th:nth-child(2),
+.table-container td:nth-child(2){ width: 110px; }
+
+.table-container th:nth-child(3),
+.table-container td:nth-child(3){ width: 110px; }
+
+.table-container th:nth-child(4),
+.table-container td:nth-child(4){ width: 280px; }
+
+.table-container th:nth-child(5),
+.table-container td:nth-child(5){ width: 220px; }
+
+.table-container th:nth-child(6),
+.table-container td:nth-child(6){ width: 100px; }
+
+.table-container th:nth-child(7),
+.table-container td:nth-child(7){ width: 130px; }
+
+.table-container th:nth-child(8),
+.table-container td:nth-child(8){ width: 130px; }
+
+.table-container th:nth-child(9),
+.table-container td:nth-child(9){ width: 170px; }
+
+.table-container th:nth-child(10),
+.table-container td:nth-child(10){ width: 70px; }
+
+.table-container th:nth-child(11),
+.table-container td:nth-child(11){ width: 120px; }
+
+.table-container th:nth-child(12),
+.table-container td:nth-child(12){ width: 100px; }
+
+.table-container th:nth-child(13),
+.table-container td:nth-child(13){ width: 120px; }
+
+.table-container th:nth-child(14),
+.table-container td:nth-child(14){ width: 110px; }
+
+.table-container th:nth-child(15),
+.table-container td:nth-child(15){ width: 180px; }
+
+.table-container th:nth-child(16),
+.table-container td:nth-child(16){ width: 190px; }
+
+.table-container th:nth-child(12),
+.table-container td:nth-child(12){ width: 100px; }
+
+.table-container th:nth-child(13),
+.table-container td:nth-child(13){ width: 120px; }
+
+.table-container th:nth-child(14),
+.table-container td:nth-child(14){ width: 110px; }
+
+.table-container th:nth-child(15),
+.table-container td:nth-child(15){ width: 180px; }
+
+.table-container th:nth-child(16),
+.table-container td:nth-child(16){ width: 190px; }
+/* AREA column */
+.table-container th:nth-child(6),
+.table-container td:nth-child(6){
+  width: 180px;
+  min-width: 180px;
+}
+
+.table-container th:nth-child(6),
+.table-container td:nth-child(6){ 
+  width: 190px; 
+  min-width: 190px; 
+}
+
+.table-container td:nth-child(6){
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  position: relative;
+}
+
+.table-scroll-wrapper{
+  position: relative;
+  margin: 0 20px 20px;
+}
+
+.table-scroll-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-bottom:10px;
+}
+
+.table-scroll-btn{
+  border:1px solid var(--border2);
+  background:#fff;
+  color:#111;
+  border-radius:999px;
+  width:40px;
+  height:40px;
+  cursor:pointer;
+  font-size:1rem;
+  font-weight:700;
+  box-shadow: var(--shadow2);
+  transition:.15s;
+}
+
+.table-scroll-btn:hover{
+  transform:translateY(-1px);
+  border-color:var(--rawls-red);
+  color:var(--rawls-red);
+}
+/* Pin the search area */
+.sticky-search-panel{
+  position: sticky;
+  top: 0;
+  z-index: 300;
+  background: #f5f6f8;
+  padding-bottom: 10px;
+}
+
+/* Keep the table as the scrolling region */
+.table-scroll-wrapper{
+  margin: 0 20px 20px;
+}
+
+.table-container{
+  max-height: calc(100vh - 320px); /* adjust based on your header/filter height */
+  overflow-y: auto;
+  overflow-x: auto;
+  position: relative;
+}
+
+/* Keep table headers visible inside scrolling table */
+.table-container thead th{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: linear-gradient(180deg, #ffffff 0%, #f6f7fb 100%);
+}
+.table-container table{
+  width: 100%;
+  min-width: 1720px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table-container th,
+.table-container td{
+  padding: 10px 8px;
+  text-align: left;
+  vertical-align: top;
+  font-size: 13px;
+}
+
+/* widths */
+.table-container th:nth-child(1),
+.table-container td:nth-child(1){ width: 90px; }   /* Last Name */
+
+.table-container th:nth-child(2),
+.table-container td:nth-child(2){ width: 90px; }   /* First Name */
+
+.table-container th:nth-child(3),
+.table-container td:nth-child(3){ width: 220px; }  /* Article Title */
+
+.table-container th:nth-child(4),
+.table-container td:nth-child(4){ width: 170px; }  /* Journal Name */
+
+.table-container th:nth-child(5),
+.table-container td:nth-child(5){ width: 150px; }  /* Keywords */
+
+.table-container th:nth-child(6),
+.table-container td:nth-child(6){ width: 150px; }  /* Method Keywords */
+
+.table-container th:nth-child(7),
+.table-container td:nth-child(7){ width: 90px; }   /* Ranking */
+
+.table-container th:nth-child(8),
+.table-container td:nth-child(8){ width: 65px; }   /* UTD */
+
+.table-container th:nth-child(9),
+.table-container td:nth-child(9){ width: 85px; }   /* FT */
+
+.table-container th:nth-child(10),
+.table-container td:nth-child(10){ width: 105px; } /* Acceptance Date */
+
+.table-container th:nth-child(11),
+.table-container td:nth-child(11){ width: 120px; } /* Area */
+
+.table-container th:nth-child(12),
+.table-container td:nth-child(12){ width: 110px; } /* Position */
+
+.table-container th:nth-child(13),
+.table-container td:nth-child(13){ width: 105px; } /* Publication Date */
+
+.table-container th:nth-child(14),
+.table-container td:nth-child(14){ width: 85px; }  /* Author Rank */
+
+.table-container th:nth-child(15),
+.table-container td:nth-child(15){ width: 95px; }  /* Number of Authors */
+
+.table-container th:nth-child(16),
+.table-container td:nth-child(16){ width: 95px; }  /* Article Link */
+</style>
 </head>
 <body>
-  <!-- Loading Overlay -->
+<!-- Loading Overlay -->
 <div id="loadingOverlay" class="loading-overlay" role="status" aria-live="polite" aria-label="Loading publications">
   <div class="loading-card">
     <div class="loading-spinner" aria-hidden="true"></div>
@@ -1001,7 +1476,9 @@ input[type="checkbox"]{
 <header class="rawls-header">
   <div class="rawls-header-inner">
     <div class="rawls-header-left">
-      <img class="rawls-logo" src="RawlsRlogo.jpeg" alt="Rawls College of Business logo">
+<a href="https://www.depts.ttu.edu/rawlsbusiness/research/" target="_blank" rel="noopener noreferrer">
+  <img class="rawls-logo" src="RawlsRlogo.jpeg" alt="Rawls College of Business logo">
+</a>
       <div class="rawls-header-brand">
         <span class="rawls-header-brand-main">Rawls College Research</span>
         <span class="rawls-header-brand-sub">Rawls College of Business · Texas Tech University</span>
@@ -1039,7 +1516,7 @@ input[type="checkbox"]{
 <main class="app">
   <div class="app-header">
     <div class="app-header-left">
-      <h1>Rawls Faculty Publications Database</h1>
+      <h1>Rawls Research Dashboard</h1>
       <div class="app-subtitle">Search and filter faculty publications by author, year, journal, and ranking.</div>
     </div>
 
@@ -1048,7 +1525,7 @@ input[type="checkbox"]{
 <a id="requestModificationBtn" href="https://forms.office.com/r/CZ7cWYgSzP" target="_blank" class="header-btn">Request Modification</a>
     </div>
   </div>
-
+<div class="sticky-search-panel">
  <div class="toolbar">
   <div class="toolbar-left">
     <span id="resultsCount">Loading publications…</span>
@@ -1086,11 +1563,10 @@ input[type="checkbox"]{
     </div>
 
     <div class="hint" id="loadHint" style="display:none;">
-      <strong>Database not loaded.</strong> If you are opening this file directly (file://), the browser blocks loading <code>Database.xlsx</code>.
+      <strong>Could not load publications.</strong>
       <div class="file-input">
-        <span>Fix: choose your Excel file here:</span>
-        <input type="file" id="dbFile" accept=".xlsx,.xls" />
-        <button class="btn" id="tryFetchBtn" type="button">Try loading Database.xlsx again</button>
+        <span>The server API did not return data. Check IIS / ASP / SQL Server, then retry.</span>
+        <button class="btn" id="FetchBtn" type="button">Retry loading data</button>
       </div>
     </div>
 
@@ -1189,37 +1665,68 @@ input[type="checkbox"]{
     </div>
   </div>
 
-  <div class="table-container">
+  <div class="table-scroll-wrapper">
+  <div class="table-scroll-actions">
+    <button class="table-scroll-btn" id="scrollLeftBtn" type="button" aria-label="Scroll left">←</button>
+    <button class="table-scroll-btn" id="scrollRightBtn" type="button" aria-label="Scroll right">→</button>
+  </div>
+
+  <div class="table-container" id="tableContainer">
     <table>
-      <thead>
-        <tr>
-          <th class="sortable" data-sort="lastName">Last Name <button class="sort-arrow" type="button" aria-label="Sort by last name">↕</button></th>
-          <th class="sortable" data-sort="firstName">First Name <button class="sort-arrow" type="button" aria-label="Sort by first name">↕</button></th>
-          <th>Start Date at Rawls</th>
-          <th>End Date at Rawls</th>
-          <th>Position</th>
-          <th>Area</th>
-          <th class="sortable" data-sort="accdate">Acceptance Date <button class="sort-arrow" type="button" aria-label="Sort by acceptance date">↕</button></th>
-          <th class="sortable" data-sort="pubdate">Publication Date <button class="sort-arrow" type="button" aria-label="Sort by publication date">↕</button></th>
-          <th>Year</th>
-          <th>Article Title</th>
-          <th>Journal</th>
-          <th>Rawls Journal List Ranking</th>
-          <th>UTD</th>
-          <th>Financial Times</th>
-          <th>Author Rank</th>
-          <th>Number of Authors</th>
-          <th>Article Link</th>
-        </tr>
-      </thead>
+     <thead>
+  <tr>
+    <th class="sortable" data-sort="lastName">
+      <span class="th-label">Last Name</span>
+      <button class="sort-arrow" type="button" aria-label="Sort by last name">↕</button>
+    </th>
+
+    <th class="sortable" data-sort="firstName">
+      <span class="th-label">First Name</span>
+      <button class="sort-arrow" type="button" aria-label="Sort by first name">↕</button>
+    </th>
+
+    <th><span class="th-label">Article Title</span></th>
+
+    <th class="sortable" data-sort="journalName">
+      <span class="th-label">Journal Name</span>
+      <button class="sort-arrow" type="button" aria-label="Sort by journal name">↕</button>
+    </th>
+
+    <th><span class="th-label">Keywords</span></th>
+    <th><span class="th-label">Method Keywords</span></th>
+
+    <th><span class="th-label">Rawls Journal List Ranking</span></th>
+    <th><span class="th-label">UTD</span></th>
+    <th><span class="th-label">Financial Times</span></th>
+
+    <th class="sortable" data-sort="accdate">
+      <span class="th-label">Acceptance Date</span>
+      <button class="sort-arrow" type="button" aria-label="Sort by acceptance date">↕</button>
+    </th>
+
+    <th><span class="th-label">Area</span></th>
+    <th><span class="th-label">Position</span></th>
+
+    <th class="sortable" data-sort="pubdate">
+      <span class="th-label">Publication Date</span>
+      <button class="sort-arrow" type="button" aria-label="Sort by publication date">↕</button>
+    </th>
+
+    <th><span class="th-label">Author Rank</span></th>
+    <th><span class="th-label">Number of Authors</span></th>
+    <th><span class="th-label">Article Link</span></th>
+  </tr>
+</thead>
       <tbody id="resultsBody"></tbody>
     </table>
   </div>
+</div>
+</div>  
 </main>
 
 <script>
-  // ---------- LOADING OVERLAY (min 6s) ----------
-const MIN_LOADING_MS = 6000;
+// ---------- LOADING OVERLAY (min 6s) ----------
+const MIN_LOADING_MS = 1000;
 let loadingStart = Date.now();
 
 function showLoadingOverlay(){
@@ -1255,28 +1762,26 @@ function setLoadingMessage(title, sub){
     return (currentRows && currentRows.length) ? currentRows : data;
   }
 
-  function buildExportData(rows) {
-    // Single source of truth for column order + values
-    return rows.map(r => ({
-      "Last Name": r.lastName || "",
-      "First Name": r.firstName || "",
-      "Start Date at Rawls": r.startDateAtRawls || "",
-      "End Date at Rawls": r.endDateAtRawls || "",
-      "Position": r.position || "",
-      "Area": r.area || "",
-      "Acceptance Date": r.accdate || "",  
-      "Publication Date": r.pubdate || "",
-      "Year": r.year || "",
-      "Article Title": r.articleTitle || "",
-      "Journal": r.journalName || "",
-      "Rawls Journal List Ranking": r.ranking || "",
-      "UTD": r.utdJournal || "",
-      "Financial Times": r.ftJournal || "",
-      "Author Rank": r.authorRank || "",
-      "Number of Authors": r.numAuthors || "",
-      "Article Link": r.articleLink || ""
-    }));
-  }
+function buildExportData(rows) {
+  return rows.map(r => ({
+    "Last Name": r.lastName || "",
+    "First Name": r.firstName || "",
+    "Article Title": r.articleTitle || "",
+    "Journal Name": r.journalName || "",
+    "Keywords": r.keywords || "",
+    "Method Keywords": r.methodKeywords || "",
+    "Rawls Journal List Ranking": r.ranking || "",
+    "UTD": r.utdJournal || "",
+    "Financial Times": r.ftJournal || "",
+    "Acceptance Date": r.accdate || "",
+    "Area": r.area || "",
+    "Position": r.position || "",
+    "Publication Date": r.pubdate || "",
+    "Author Rank": r.authorRank || "",
+    "Number of Authors": r.numAuthors || "",
+    "Article Link": r.articleLink || ""
+  }));
+}
 
   function downloadXlsx(filename, sheetName, jsonRows) {
     const ws = XLSX.utils.json_to_sheet(jsonRows);
@@ -1439,6 +1944,8 @@ function toggleExportMenu(){
 
   let data = [];
   let currentRows = [];
+  const sortState = { key: "accdate", dir: "desc" };
+  const multiSelectControls = {};
 
   const elements = {
     lastNameSearch: document.getElementById("lastNameSearch"),
@@ -1465,8 +1972,7 @@ function toggleExportMenu(){
     advancedToggle: document.getElementById("advancedToggle"),
     advancedPanel: document.getElementById("advancedPanel"),
     loadHint: document.getElementById("loadHint"),
-    dbFile: document.getElementById("dbFile"),
-    tryFetchBtn: document.getElementById("tryFetchBtn"),
+    FetchBtn: document.getElementById("FetchBtn"),
     currentYes: document.getElementById("currentYes"),
 currentNo: document.getElementById("currentNo"),
     accYearMulti: document.getElementById("accYearMulti"),
@@ -1474,18 +1980,6 @@ currentNo: document.getElementById("currentNo"),
 
 
   };
-
-  const multiSelectControls = {};
-
-  // ---------- helpers ----------
-  function toTime(v){
-  const d = parseDateLoose(v);
-  return d ? d.getTime() : -Infinity;
-}
-
-let sortState = { key: "accdate", dir: "desc" };
-
-
 
 function parseDateLoose(v){
   const s = String(v || "").trim();
@@ -1664,21 +2158,31 @@ function tokenMatchOneField(queryToken, candidate, exactMode){
     return out;
   }
 
-  function pick(r, keys){
-    for(const k of keys){
-      const v=r[k];
-      if(v!==undefined && v!==null && String(v).trim()!=="") return v;
+ function pick(r, keys){
+  const rKeys = Object.keys(r);
+
+  for(const target of keys){
+    const t = canon(target);
+
+    for(const k of rKeys){
+      if(canon(k) === t){
+        const v = r[k];
+        if(v !== undefined && v !== null && String(v).trim() !== ""){
+          return v;
+        }
+      }
     }
-    return "";
   }
+  return "";
+}
 
   // choose best sheet by matching ANY of these headers (your Database.xlsx uses these)
   function findBestSheet(workbook){
   const want = [
-    "personname","start date at rawls","end date at rawls","position","area",
-    "publication date","pub date","year","article title","journal name",
+    "personname","position","area",
+    "publication date","pub date","article title","journal name",
     "ranking","journal ranking","utd journal","financial times journal",
-    "openaccessurl","article link"
+    "openaccessurl","article link","keywords","method keywords"
   ];
 
   let best = { name: workbook.SheetNames[0], score: -1, headerRow: 0 };
@@ -1779,68 +2283,76 @@ function tokenMatchOneField(queryToken, candidate, exactMode){
   multiSelectControls.year = buildMultiSelect(elements.yearMulti, data.map(d=>d.year), "All Publication Years");
 }
 
-  function renderTable(rows){
-    currentRows = rows.slice();
-   if(!rows.length){
-  elements.resultsBody.innerHTML = `
-    <tr>
-      <td colspan="17" style="padding:26px;">
-        <div style="
-          border:1px solid rgba(186,12,47,.18);
-          background:rgba(186,12,47,.05);
-          border-radius:14px;
-          padding:16px 18px;
-          color:#3a0b15;
-          font-weight:650;">
+ function renderTable(rows){
+  currentRows = rows.slice();
+
+  if(!rows.length){
+    elements.resultsBody.innerHTML = `
+      <tr><td colspan="16" style="padding:26px;">
+        <div style="border:1px solid rgba(186,12,47,.18);background:rgba(186,12,47,.05);
+        border-radius:14px;padding:16px 18px;color:#3a0b15;font-weight:650;">
           No results found. Try clearing filters or broadening your search.
         </div>
-      </td>
-    </tr>
-  `;
-  elements.resultsCount.textContent = `Showing 0 results`;
-  return;
+      </td></tr>`;
+    elements.resultsCount.textContent = `Showing 0 results`;
+    return;
+  }
+
+  elements.resultsCount.textContent = `Showing ${rows.length} result${rows.length === 1 ? "" : "s"}`;
+
+  elements.resultsBody.innerHTML = rows.map(r => {
+    const url = safeUrl(r.articleLink);
+    const rankingHtml = r.ranking
+      ? `<span class="badge badge-blue">${escapeHtml(r.ranking)}</span>`
+      : "";
+
+    const utdHtml = r.utdJournal === "Yes"
+      ? `<span class="badge badge-green">Yes</span>`
+      : (r.utdJournal === "No" ? `<span class="badge badge-no">No</span>` : "");
+
+    const ftHtml = r.ftJournal === "Yes"
+      ? `<span class="badge badge-green">Yes</span>`
+      : (r.ftJournal === "No" ? `<span class="badge badge-no">No</span>` : "");
+
+    const authorRankHtml = r.authorRank
+      ? `<span class="badge badge-blue">${escapeHtml(r.authorRank)}</span>`
+      : "";
+
+    const numAuthorsHtml = r.numAuthors
+      ? `<span class="badge badge-blue">${escapeHtml(r.numAuthors)}</span>`
+      : "";
+
+    const linkHtml = url
+      ? `<a class="link-btn" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Open</a>`
+      : `<span class="link-btn disabled">No link</span>`;
+
+    return `
+      <tr>
+        <td>${escapeHtml(r.lastName)}</td>
+        <td>${escapeHtml(r.firstName)}</td>
+        <td>${escapeHtml(r.articleTitle)}</td>
+        <td>${escapeHtml(r.journalName)}</td>
+        <td>${escapeHtml(r.keywords)}</td>
+        <td>${escapeHtml(r.methodKeywords)}</td>
+        <td>${rankingHtml}</td>
+        <td>${utdHtml}</td>
+        <td>${ftHtml}</td>
+        <td>${escapeHtml(r.accdate)}</td>
+        <td>${escapeHtml(r.area)}</td>
+        <td>${escapeHtml(r.position)}</td>
+        <td>${escapeHtml(r.pubdate)}</td>
+        <td>${authorRankHtml}</td>
+        <td>${numAuthorsHtml}</td>
+        <td>${linkHtml}</td>
+      </tr>`;
+  }).join("");
 }
 
-    const frag=document.createDocumentFragment();
-
-    rows.forEach(r=>{
-      const tr=document.createElement("tr");
-      const url=safeUrl(r.articleLink);
-   tr.innerHTML = `
-  <td>${r.lastName||""}</td>
-  <td>${r.firstName||""}</td>
-  <td>${r.startDateAtRawls||""}</td>
-  <td>${r.endDateAtRawls||""}</td>
-  <td>${r.position||""}</td>
-  <td>${r.area||""}</td>
-  <td>${r.accdate||""}</td>
-  <td>${r.pubdate||""}</td>
-  <td>${r.year||""}</td>
-  <td>${r.articleTitle||""}</td>
-  <td>${r.journalName||""}</td>
-  <td>${r.ranking ? `<span class="badge badge-blue">${r.ranking}</span>` : ""}</td>
-  <td>${r.utdJournal==="Yes" ? `<span class="badge badge-green">Yes</span>` : (r.utdJournal==="No" ? `<span class="badge badge-no">No</span>` : "")}</td>
-  <td>${r.ftJournal==="Yes" ? `<span class="badge badge-green">Yes</span>` : (r.ftJournal==="No" ? `<span class="badge badge-no">No</span>` : "")}</td>
-  <td>${r.authorRank ? `<span class="badge badge-blue">${r.authorRank}</span>` : ""}</td>
-  <td>${r.numAuthors ? `<span class="badge badge-blue">${r.numAuthors}</span>` : ""}</td>
-  <td>${url ? `<a class="link-btn" href="${url}" target="_blank" rel="noopener noreferrer">Open</a>` : `<span class="link-btn disabled">No link</span>`}</td>
-`;
-
-      frag.appendChild(tr);
-    });
-
-    elements.resultsBody.innerHTML = "";
-elements.resultsBody.appendChild(frag);
-
-elements.resultsCount.textContent = `Showing ${rows.length} result${rows.length === 1 ? "" : "s"}`;
-}
-
- function applyFilters(){
+function applyFilters(){
   let firstQ = elements.firstNameSearch.value.trim();
   let lastQ  = elements.lastNameSearch.value.trim();
   const exact = elements.exactNameMatch.checked;
 
-  // If user typed "E Walden" in FIRST box, split it
   if(firstQ && !lastQ){
     const parts = firstQ.split(/\s+/).filter(Boolean);
     if(parts.length >= 2){
@@ -1854,68 +2366,68 @@ elements.resultsCount.textContent = `Showing ${rows.length} result${rows.length 
 
   const areaVals = multiSelectControls.area ? multiSelectControls.area.getValues() : [];
   const posVals  = multiSelectControls.position ? multiSelectControls.position.getValues() : [];
+  const accYearVals = multiSelectControls.accYear ? multiSelectControls.accYear.getValues() : [];
+  const yearVals = multiSelectControls.year ? multiSelectControls.year.getValues() : [];
 
-  const utdY=elements.utdYes.checked, utdN=elements.utdNo.checked;
-  const ftY=elements.ftYes.checked, ftN=elements.ftNo.checked;
-  const r5=elements.rank5.checked, r5s=elements.rank5star.checked;
-const curY = elements.currentYes.checked, curN = elements.currentNo.checked;
+  const utdY = elements.utdYes.checked;
+  const utdN = elements.utdNo.checked;
+  const ftY  = elements.ftYes.checked;
+  const ftN  = elements.ftNo.checked;
+  const r5   = elements.rank5.checked;
+  const r5s  = elements.rank5star.checked;
+  const curY = elements.currentYes.checked;
+  const curN = elements.currentNo.checked;
+  const a1   = elements.author1.checked;
+  const a2   = elements.author2.checked;
 
   const kq = elements.keywordSearch.value.toLowerCase();
   const tq = elements.titleSearch.value.toLowerCase();
   const jq = elements.journalSearch.value.toLowerCase();
-const accYearVals = multiSelectControls.accYear ? multiSelectControls.accYear.getValues() : [];
-const yearVals    = multiSelectControls.year ? multiSelectControls.year.getValues() : [];
 
-  const rows = data.filter(d=>{
+  const rows = data.filter(d => {
     const first = d.firstName || "";
-    const last  = d.lastName  || "";
+    const last  = d.lastName || "";
 
     for(const t of firstTokens){
       if(!tokenMatchOneField(t, first, exact) && !tokenMatchOneField(t, last, exact)) return false;
     }
+
     for(const t of lastTokens){
       if(!tokenMatchOneField(t, last, exact) && !tokenMatchOneField(t, first, exact)) return false;
     }
-    // ✅ Acceptance Year filter (from Acceptance Date)
-if (accYearVals.length){
-  const ay = getYearFromDateLoose(d.accdate);
-  if(!accYearVals.includes(ay)) return false;
-}
 
-// Publication Year filter (existing Year column)
-if (yearVals.length && !yearVals.includes(String(d.year))) return false;
+    if(accYearVals.length){
+      const ay = getYearFromDateLoose(d.accdate);
+      if(!accYearVals.includes(ay)) return false;
+    }
 
-// Currently at Rawls filter: Yes => End Date is N/A, No => End Date is NOT N/A
-const endVal = fold(d.endDateAtRawls || "");
-const isNAEnd =
-  !endVal ||
-  endVal === "n/a" ||
-  endVal === "na" ||
-  endVal === "n.a" ||
-  endVal === "n.a.";
+    if(yearVals.length && !yearVals.includes(String(d.year))) return false;
+    if(areaVals.length && !areaVals.includes(d.area)) return false;
+    if(posVals.length && !posVals.includes(d.position)) return false;
 
-if ((curY || curN) && !((curY && isNAEnd) || (curN && !isNAEnd))) return false;
+    const endVal = fold(d.endDateAtRawls || "");
+    const isNAEnd =
+      !endVal ||
+      endVal === "n/a" ||
+      endVal === "na" ||
+      endVal === "n.a" ||
+      endVal === "n.a.";
+
+    if((curY || curN) && !((curY && isNAEnd) || (curN && !isNAEnd))) return false;
 
     if(kq){
-      const inTitle = (d.articleTitle||"").toLowerCase().includes(kq);
-      const inJour  = (d.journalName||"").toLowerCase().includes(kq);
+      const inTitle = (d.articleTitle || "").toLowerCase().includes(kq);
+      const inJour  = (d.journalName || "").toLowerCase().includes(kq);
       if(!inTitle && !inJour) return false;
     }
-    if(tq && !String(d.articleTitle||"").toLowerCase().includes(tq)) return false;
-    if(jq && !String(d.journalName||"").toLowerCase().includes(jq)) return false;
 
-    if(areaVals.length && !areaVals.includes(d.area)) return false;
-    if(posVals.length  && !posVals.includes(d.position)) return false;
-    if(yearVals.length && !yearVals.includes(String(d.year))) return false;
+    if(tq && !String(d.articleTitle || "").toLowerCase().includes(tq)) return false;
+    if(jq && !String(d.journalName || "").toLowerCase().includes(jq)) return false;
 
-    if((utdY||utdN) && !((utdY && d.utdJournal==="Yes") || (utdN && d.utdJournal==="No"))) return false;
-    if((ftY||ftN)   && !((ftY && d.ftJournal==="Yes")  || (ftN && d.ftJournal==="No"))) return false;
-
-    if((r5 || r5s) && !((r5 && d.ranking==="5") || (r5s && d.ranking==="5*"))) return false;
-
-    const a1 = elements.author1.checked;
-    const a2 = elements.author2.checked;
-    if((a1 || a2) && !((a1 && String(d.authorRank)==="1") || (a2 && String(d.authorRank)==="2"))) return false;
+    if((utdY || utdN) && !((utdY && d.utdJournal === "Yes") || (utdN && d.utdJournal === "No"))) return false;
+    if((ftY || ftN) && !((ftY && d.ftJournal === "Yes") || (ftN && d.ftJournal === "No"))) return false;
+    if((r5 || r5s) && !((r5 && d.ranking === "5") || (r5s && d.ranking === "5*"))) return false;
+    if((a1 || a2) && !((a1 && String(d.authorRank) === "1") || (a2 && String(d.authorRank) === "2"))) return false;
 
     return true;
   });
@@ -1923,260 +2435,305 @@ if ((curY || curN) && !((curY && isNAEnd) || (curN && !isNAEnd))) return false;
   renderTable(sortRows(rows));
 }
 
+function clearAllFilters(){
+  elements.firstNameSearch.value = "";
+  elements.lastNameSearch.value = "";
+  elements.exactNameMatch.checked = false;
+  elements.keywordSearch.value = "";
+  elements.titleSearch.value = "";
+  elements.journalSearch.value = "";
 
-  function clearAllFilters(){
-    elements.firstNameSearch.value="";
-    elements.lastNameSearch.value="";
-    elements.exactNameMatch.checked=false;
-    elements.keywordSearch.value="";
-    elements.titleSearch.value="";
-    elements.journalSearch.value="";
-    if(multiSelectControls.area) multiSelectControls.area.clear();
-    if(multiSelectControls.position) multiSelectControls.position.clear();
-    if(multiSelectControls.year) multiSelectControls.year.clear();
-    elements.utdYes.checked=elements.utdNo.checked=false;
-    elements.ftYes.checked=elements.ftNo.checked=false;
-    elements.rank5.checked=elements.rank5star.checked=false;
-    elements.author1.checked = false;
-    elements.author2.checked = false;
-    elements.currentYes.checked = elements.currentNo.checked = false;
-    if(multiSelectControls.accYear) multiSelectControls.accYear.clear();
-if(multiSelectControls.year)    multiSelectControls.year.clear();
+  if(multiSelectControls.area) multiSelectControls.area.clear();
+  if(multiSelectControls.position) multiSelectControls.position.clear();
+  if(multiSelectControls.accYear) multiSelectControls.accYear.clear();
+  if(multiSelectControls.year) multiSelectControls.year.clear();
 
+  elements.utdYes.checked = false;
+  elements.utdNo.checked = false;
+  elements.ftYes.checked = false;
+  elements.ftNo.checked = false;
+  elements.rank5.checked = false;
+  elements.rank5star.checked = false;
+  elements.author1.checked = false;
+  elements.author2.checked = false;
+  elements.currentYes.checked = false;
+  elements.currentNo.checked = false;
 
-
-    renderTable(sortRows(data));
-
-  }
-
-  function showLoadHint(msg){
-    elements.loadHint.style.display="block";
-    elements.resultsCount.textContent = msg || "Database not loaded.";
-  }
-function excelDateToJS(value) {
-  if (!value) return "";
-  if (typeof value === "number") {
-    const date = new Date((value - 25569) * 86400 * 1000);
-    return date.toLocaleDateString("en-US");
-  }
-  return value; // already text
-}
-
-function ingestWorkbook(workbook) {
-  // ✅ Pull specifically from sheet named "14"
-  const sheetName = workbook.SheetNames.find(n => String(n).trim() === "14");
-
-  if (!sheetName) {
-    showLoadHint(`❌ Sheet named "14" not found. Available: ${workbook.SheetNames.join(", ")}`);
-    return;
-  }
-
-  const sheet = workbook.Sheets[sheetName];
-  console.log("Using sheet:", sheetName);
-
-  const rows = XLSX.utils.sheet_to_json(sheet, {
-    range: "A2:Q1048576", // start after header
-    header: [
-      "lastname",
-      "firstname",
-      "startDateAtRawls",
-      "endDateAtRawls",
-      "position",
-      "area",
-      "accdate",
-      "pubdate",
-      "year",
-      "articleTitle",
-      "journalName",
-      "ranking",
-      "utdJournal",
-      "ftJournal",
-      "authorRank",
-      "numAuthors",
-      "articleLink"
-    ],
-    defval: ""
-  });
-
-  data = rows.map(r => ({
-    lastName: r.lastname,
-    firstName: r.firstname,
-    startDateAtRawls: excelDateToJS(r.startDateAtRawls),
-    endDateAtRawls: excelDateToJS(r.endDateAtRawls),
-    position: r.position,
-    area: r.area,
-    accdate: excelDateToJS(r.accdate),
-    pubdate: excelDateToJS(r.pubdate),
-    year: String(r.year),
-    articleTitle: r.articleTitle,
-    journalName: r.journalName,
-    ranking: String(r.ranking),
-    utdJournal: String(r.utdJournal),
-    ftJournal: String(r.ftJournal),
-    authorRank: String(r.authorRank),
-    numAuthors: String(r.numAuthors),
-    articleLink: String(r.articleLink)
-  }));
-
-    populateMultiSelects();
   renderTable(sortRows(data));
-  elements.loadHint.style.display = "none";
-
-  setLoadingMessage("Loaded!", "Database is ready.");
-  hideLoadingOverlayWhenReady();
 }
 
+function showLoadHint(msg){
+  elements.loadHint.style.display = "block";
+  elements.resultsCount.textContent = msg || "Database not loaded.";
+}
 
+function hideLoadHint(){
+  elements.loadHint.style.display = "none";
+}
 
-  async function tryLoadViaFetch(){
-  const candidates = [
-    "Database.xlsx",
-    "database.xlsx",
-    "DatabaseA.xlsx"
-  ];
+const API_URL = "api/getPublications.asp";
 
-  for (const name of candidates) {
-    try {
-      const url = new URL(name, window.location.href).toString();
-      console.log("Trying:", url);
+function escapeHtml(value){
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) throw new Error(`${name} -> HTTP ${res.status}`);
+function normalizeText(value){
+  return String(value == null ? "" : value).trim();
+}
 
-      const buf = await res.arrayBuffer();
-      const workbook = XLSX.read(buf, { type:"array" });
-      ingestWorkbook(workbook);
-      console.log("Loaded successfully from:", name);
-      return;
-    } catch (err) {
-      console.warn("Failed:", err.message || err);
+function normalizeYesNo(value){
+  const s = normalizeText(value).toLowerCase();
+  if(!s) return "";
+  if(s === "yes" || s === "y" || s === "true" || s === "1") return "Yes";
+  if(s === "no" || s === "n" || s === "false" || s === "0") return "No";
+  return normalizeText(value);
+}
+
+function formatDateForDisplay(value){
+  if(value == null || value === "") return "";
+
+  if(Object.prototype.toString.call(value) === "[object Date]" && !isNaN(value.getTime())){
+    const mm = String(value.getMonth() + 1).padStart(2, "0");
+    const dd = String(value.getDate()).padStart(2, "0");
+    const yyyy = String(value.getFullYear());
+    return `${mm}/${dd}/${yyyy}`;
+  }
+
+  const s = String(value).trim();
+  if(!s) return "";
+
+  if(/^\d{4}-\d{2}-\d{2}$/.test(s)){
+    const parts = s.split("-");
+    return `${parts[1]}/${parts[2]}/${parts[0]}`;
+  }
+
+  if(/^\d{4}-\d{2}-\d{2}T/.test(s)){
+    const d = new Date(s);
+    if(!isNaN(d.getTime())){
+      const mm = String(d.getMonth() + 1).padStart(2, "0");
+      const dd = String(d.getDate()).padStart(2, "0");
+      const yyyy = String(d.getFullYear());
+      return `${mm}/${dd}/${yyyy}`;
     }
   }
 
-   showLoadHint("❌ Could not load the Excel file. Check GitHub Pages folder + exact filename/case.");
-
-  setLoadingMessage("Couldn’t load the database", "Please use the file picker to upload the Excel file.");
-  hideLoadingOverlayWhenReady();
+  return s;
 }
 
+function getApiField(row, keys){
+  for(const key of keys){
+    if(row != null && Object.prototype.hasOwnProperty.call(row, key) && row[key] != null){
+      return row[key];
+    }
+  }
+  return "";
+}
 
-  function attachListeners(){
-    const debounce=(fn,ms=120)=>{ let t; return ()=>{ clearTimeout(t); t=setTimeout(fn,ms); }; };
-    const debouncedApply = debounce(applyFilters, 120);
+function normalizePublicationRow(row){
+  const personname = getApiField(row, [
+    "personname", "Person Name", "personName", "Author", "Authors"
+  ]);
 
-    [elements.firstNameSearch, elements.lastNameSearch, elements.keywordSearch, elements.titleSearch, elements.journalSearch]
-      .forEach(el=>el.addEventListener("input", debouncedApply));
+  const splitName = splitPersonName(personname);
 
-[elements.exactNameMatch,
- elements.utdYes, elements.utdNo,
- elements.ftYes, elements.ftNo,
- elements.rank5, elements.rank5star,
- elements.author1, elements.author2,
- elements.currentYes, elements.currentNo
-].forEach(el => el.addEventListener("input", applyFilters));
+  const lastName = normalizeText(
+    getApiField(row, ["lastName", "LastName", "Lastname", "Last Name", "lastname"]) || splitName.last
+  );
 
+  const firstName = normalizeText(
+    getApiField(row, ["firstName", "FirstName", "Firstname", "First Name", "firstname"]) || splitName.first
+  );
 
+  return {
+    lastName: lastName,
+    firstName: firstName,
+    articleTitle: normalizeText(getApiField(row, ["articleTitle", "ArticleTitle", "Article Title", "articletitle"])),
+    journalName: normalizeText(getApiField(row, ["journalName", "JournalName", "Journal Name", "journalname"])),
+    keywords: normalizeText(getApiField(row, ["keywords", "Keywords"])),
+    methodKeywords: normalizeText(getApiField(row, ["methodKeywords", "MethodKeywords", "Method Keywords"])),
+    ranking: normalizeText(getApiField(row, ["ranking", "Ranking", "Ranking - Updated", "rawlsJournalListRanking"])),
+    utdJournal: normalizeYesNo(getApiField(row, ["utdJournal", "UTD", "UTD Journal"])),
+    ftJournal: normalizeYesNo(getApiField(row, ["ftJournal", "Financial Times", "Financial Times Journal"])),
+    accdate: formatDateForDisplay(getApiField(row, ["accdate", "acceptanceDate", "Acceptance Date"])),
+    area: normalizeText(getApiField(row, ["area", "Area"])),
+    position: normalizeText(getApiField(row, ["position", "Position"])),
+    pubdate: formatDateForDisplay(getApiField(row, ["pubdate", "publicationDate", "Publication Date"])),
+    year: normalizeText(getApiField(row, ["year", "Year", "publicationYear"])),
+    authorRank: normalizeText(getApiField(row, ["authorRank", "Author Rank"])),
+    numAuthors: normalizeText(getApiField(row, ["numAuthors", "Number of Authors"])),
+    articleLink: normalizeText(getApiField(row, ["articleLink", "Article Link", "openaccessurl"])),
+    endDateAtRawls: normalizeText(getApiField(row, ["endDateAtRawls", "End date at Rawls", "End Date at Rawls"]))
+  };
+}
 
-    elements.clearFilters.addEventListener("click", clearAllFilters);
-// Export dropdown open/close
-elements.exportBtn.addEventListener("click", (e)=>{
-  e.stopPropagation();
-  toggleExportMenu();
-});
+function setPublicationsData(rows){
+  data = rows.map(normalizePublicationRow);
+  populateMultiSelects();
+  renderTable(sortRows(data));
+  hideLoadHint();
+}
 
-// Pick an export option
-document.getElementById("exportMenu").addEventListener("click", (e)=>{
-  const btn = e.target.closest("[data-export]");
-  if(!btn) return;
+async function loadPublicationsFromApi(){
+  showLoadingOverlay();
+  setLoadingMessage("Loading publications…", "Please wait while the database loads.");
 
-  const choice = btn.getAttribute("data-export");
-  closeExportMenu();
+  try{
+    const url = `${API_URL}?mode=all&_=${Date.now()}`;
 
-  if(choice === "xlsx") exportDataAsXlsx();
-  else if(choice === "csv") exportDataAsCsv();
-  else if(choice === "summary") exportSummaryOnlyXlsx();
-});
-
-// Close when clicking outside
-document.addEventListener("click", (e)=>{
-  const wrap = document.querySelector(".export-wrap");
-  if(wrap && !wrap.contains(e.target)) closeExportMenu();
-});
-
-// Close with Escape
-document.addEventListener("keydown", (e)=>{
-  if(e.key === "Escape") closeExportMenu();
-});
-
-
-
-
-    elements.advancedToggle.addEventListener("click", ()=>{
-      const open = elements.advancedPanel.classList.toggle("collapsed") === false;
-      elements.advancedToggle.classList.toggle("open", open);
-      elements.advancedToggle.setAttribute("aria-expanded", String(open));
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json"
+      },
+      credentials: "same-origin",
+      cache: "no-store"
     });
 
-
-    // upload fallback (works even on file://)
-    elements.dbFile.addEventListener("change", async (e)=>{
-      const file = e.target.files && e.target.files[0];
-      if(!file) return;
-      try{
-        const buf = await file.arrayBuffer();
-        const workbook = XLSX.read(buf, { type:"array" });
-        ingestWorkbook(workbook);
-      }catch(err){
-        console.error(err);
-        showLoadHint("❌ Could not read that Excel file. Make sure it's .xlsx and not protected.");
-      }
-      });
-// Click-to-sort on header arrows (Last, First, Acceptance Date)
-document.querySelectorAll("th.sortable").forEach(th=>{
-  th.addEventListener("click", (e)=>{
-    // allow clicks on the th OR the arrow button
-    const key = th.getAttribute("data-sort");
-    if(!key) return;
-
-    // toggle direction if clicking same column again
-    if(sortState.key === key){
-      sortState.dir = (sortState.dir === "asc") ? "desc" : "asc";
-    }else{
-      sortState.key = key;
-    const isDateKey = (key === "pubdate" || key === "accdate");
-sortState.dir = isDateKey ? "desc" : "asc";
-
+    if(!response.ok){
+      throw new Error(`HTTP ${response.status}`);
     }
 
-    // update arrow symbols
-    document.querySelectorAll("th.sortable .sort-arrow").forEach(btn=>btn.textContent="↕");
-    const arrow = th.querySelector(".sort-arrow");
-    arrow.textContent = (sortState.dir === "asc") ? "↑" : "↓";
+    const contentType = response.headers.get("content-type") || "";
+    if(contentType.toLowerCase().indexOf("application/json") === -1){
+      const rawText = await response.text();
+      throw new Error(`Expected JSON but received: ${rawText.substring(0, 200)}`);
+    }
 
-    applyFilters();
-  });
-});
+    const payload = await response.json();
 
-    elements.tryFetchBtn.addEventListener("click", ()=>tryLoadViaFetch());
+    if(payload && payload.success === false){
+      throw new Error(payload.error || "API returned success=false");
+    }
+
+    const rows = Array.isArray(payload)
+      ? payload
+      : Array.isArray(payload.rows)
+        ? payload.rows
+        : Array.isArray(payload.data)
+          ? payload.data
+          : [];
+
+    setPublicationsData(rows);
+  }catch(err){
+    console.error("API load failed:", err);
+    elements.resultsBody.innerHTML = "";
+    showLoadHint("❌ Could not load publications from the server.");
+  }finally{
+    hideLoadingOverlayWhenReady();
   }
+}
+
+function attachListeners(){
+  const debounce = (fn, ms = 260) => {
+    let t;
+    return () => {
+      clearTimeout(t);
+      t = setTimeout(fn, ms);
+    };
+  };
+
+  const debouncedApply = debounce(applyFilters, 120);
+
+  [elements.firstNameSearch, elements.lastNameSearch, elements.keywordSearch, elements.titleSearch, elements.journalSearch]
+    .forEach(el => el.addEventListener("input", debouncedApply));
+
+  [
+    elements.exactNameMatch,
+    elements.utdYes, elements.utdNo,
+    elements.ftYes, elements.ftNo,
+    elements.rank5, elements.rank5star,
+    elements.author1, elements.author2,
+    elements.currentYes, elements.currentNo
+  ].forEach(el => el.addEventListener("input", applyFilters));
+
+  elements.clearFilters.addEventListener("click", clearAllFilters);
+
+  elements.exportBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleExportMenu();
+  });
+
+  document.getElementById("exportMenu").addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-export]");
+    if(!btn) return;
+
+    const choice = btn.getAttribute("data-export");
+    closeExportMenu();
+
+    if(choice === "xlsx") exportDataAsXlsx();
+    else if(choice === "csv") exportDataAsCsv();
+    else if(choice === "summary") exportSummaryOnlyXlsx();
+  });
+
+  document.addEventListener("click", (e) => {
+    const wrap = document.querySelector(".export-wrap");
+    if(wrap && !wrap.contains(e.target)) closeExportMenu();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape") closeExportMenu();
+  });
+
+  elements.advancedToggle.addEventListener("click", () => {
+    const open = elements.advancedPanel.classList.toggle("collapsed") === false;
+    elements.advancedToggle.classList.toggle("open", open);
+    elements.advancedToggle.setAttribute("aria-expanded", String(open));
+  });
+
+  document.querySelectorAll("th.sortable").forEach(th => {
+    th.addEventListener("click", () => {
+      const key = th.getAttribute("data-sort");
+      if(!key) return;
+
+      if(sortState.key === key){
+        sortState.dir = (sortState.dir === "asc") ? "desc" : "asc";
+      }else{
+        sortState.key = key;
+        const isDateKey = (key === "pubdate" || key === "accdate");
+        sortState.dir = isDateKey ? "desc" : "asc";
+      }
+
+      document.querySelectorAll("th.sortable .sort-arrow").forEach(btn => {
+        btn.textContent = "↕";
+      });
+
+      const arrow = th.querySelector(".sort-arrow");
+      if(arrow){
+        arrow.textContent = (sortState.dir === "asc") ? "↑" : "↓";
+      }
+
+      applyFilters();
+    });
+  });
+
+  if(elements.FetchBtn){
+    elements.FetchBtn.addEventListener("click", loadPublicationsFromApi);
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   attachListeners();
 
-  showLoadingOverlay(); // ✅ add this
-
   const th = document.querySelector('th.sortable[data-sort="accdate"]');
-  if (th) {
-    document.querySelectorAll("th.sortable .sort-arrow").forEach(btn => btn.textContent = "↕");
+  if(th){
+    document.querySelectorAll("th.sortable .sort-arrow").forEach(btn => {
+      btn.textContent = "↕";
+    });
+
     const arrow = th.querySelector(".sort-arrow");
-    if (arrow) arrow.textContent = "↓";
+    if(arrow) arrow.textContent = "↓";
   }
 
-  tryLoadViaFetch();
+  loadPublicationsFromApi();
 });
-/* ===============================
-   TUTORIAL / WALKTHROUGH MODE
-================================ */
+
+showLoadingOverlay();
+setLoadingMessage("Loading publications…", "Please wait while the database loads.");
 /* ===============================
    TUTORIAL / WALKTHROUGH MODE
 ================================ */
@@ -2532,9 +3089,21 @@ function placeCardNear(rect){
   window.RawlsTour = { open: openTour, close: closeTour };
 })();
 
+const tableContainer = document.getElementById("tableContainer");
+const scrollLeftBtn = document.getElementById("scrollLeftBtn");
+const scrollRightBtn = document.getElementById("scrollRightBtn");
 
+if (scrollLeftBtn && tableContainer) {
+  scrollLeftBtn.addEventListener("click", () => {
+    tableContainer.scrollBy({ left: -600, behavior: "smooth" });
+  });
+}
 
-
+if (scrollRightBtn && tableContainer) {
+  scrollRightBtn.addEventListener("click", () => {
+    tableContainer.scrollBy({ left: 600, behavior: "smooth" });
+  });
+}
 </script>
 </body>
 </html>
