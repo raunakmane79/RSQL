@@ -52,7 +52,7 @@ sql = "SELECT " & _
       "ISNULL([Article Link], '') AS articleLink, " & _
       "ISNULL(CAST([year] AS varchar(10)), '') AS [year], " & _
       "ISNULL(CAST([End date at Rawls] AS varchar(50)), '') AS endDateAtRawls " & _
-      "FROM dbo.publications " & _
+      "FROM dbo.rawls_publications " & _
       "ORDER BY [Acceptance Date] DESC"
 
 Set rs = conn.Execute(sql)
