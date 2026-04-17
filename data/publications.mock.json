@@ -1,0 +1,23 @@
+[
+  {
+    "lastName": "Doe",
+    "firstName": "Jane",
+    "articleTitle": "Sample Publication",
+    "journalName": "Mock Journal",
+    "keywords": "sample,mock",
+    "methodKeywords": "simulation",
+    "ranking": "A",
+    "utdJournal": "No",
+    "ftJournal": "No",
+    "accdate": "2026-01-15",
+    "area": "Information Systems",
+    "position": "Assistant Professor",
+    "pubdate": "2026-03-01",
+    "authorRank": "1",
+    "numAuthors": "2",
+    "articleLink": "",
+    "year": "2026",
+    "endDateAtRawls": "",
+    "startDateAtRawls": "2024-08-15"
+  }
+]
