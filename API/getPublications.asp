@@ -34,26 +34,27 @@ If Err.Number <> 0 Then
 End If
 
 sql = "SELECT " & _
-      "ISNULL([Lastname], '') AS lastName, " & _
-      "ISNULL([Firstname], '') AS firstName, " & _
-      "ISNULL([articletitle], '') AS articleTitle, " & _
-      "ISNULL([journalname], '') AS journalName, " & _
-      "ISNULL([Keywords], '') AS keywords, " & _
-      "ISNULL([Method Keywords], '') AS methodKeywords, " & _
-      "ISNULL([Ranking - Updated], '') AS ranking, " & _
-      "ISNULL([UTD Journal], '') AS utdJournal, " & _
-      "ISNULL([Financial Times Journal], '') AS ftJournal, " & _
-      "ISNULL(CONVERT(varchar(10), [Acceptance Date], 23), '') AS accdate, " & _
-      "ISNULL([Area], '') AS area, " & _
-      "ISNULL([Position], '') AS position, " & _
-      "ISNULL(CONVERT(varchar(10), [pubdate], 23), '') AS pubdate, " & _
-      "ISNULL(CAST([Author Rank] AS varchar(20)), '') AS authorRank, " & _
-      "ISNULL(CAST([Number of Authors] AS varchar(20)), '') AS numAuthors, " & _
-      "ISNULL([Article Link], '') AS articleLink, " & _
-      "ISNULL(CAST([year] AS varchar(10)), '') AS [year], " & _
-      "ISNULL(CAST([End date at Rawls] AS varchar(50)), '') AS endDateAtRawls " & _
+      "ISNULL(lastname, '') AS lastName, " & _
+      "ISNULL(firstname, '') AS firstName, " & _
+      "ISNULL(article_title, '') AS articleTitle, " & _
+      "ISNULL(journal_name, '') AS journalName, " & _
+      "ISNULL(keywords, '') AS keywords, " & _
+      "ISNULL(method_keywords, '') AS methodKeywords, " & _
+      "ISNULL(ranking, '') AS ranking, " & _
+      "ISNULL(utd_journal, '') AS utdJournal, " & _
+      "ISNULL(ft_journal, '') AS ftJournal, " & _
+      "ISNULL(CONVERT(varchar(10), acceptance_date, 23), '') AS accdate, " & _
+      "ISNULL(area, '') AS area, " & _
+      "ISNULL(position, '') AS position, " & _
+      "ISNULL(CONVERT(varchar(10), pub_date, 23), '') AS pubdate, " & _
+      "ISNULL(CAST(pub_year AS varchar(10)), '') AS [year], " & _
+      "ISNULL(author_rank, '') AS authorRank, " & _
+      "ISNULL(CAST(num_authors AS varchar(20)), '') AS numAuthors, " & _
+      "ISNULL(article_link, '') AS articleLink, " & _
+      "ISNULL(CONVERT(varchar(10), end_date_rawls, 23), '') AS endDateAtRawls, " & _
+      "ISNULL(CONVERT(varchar(10), start_date_rawls, 23), '') AS startDateAtRawls " & _
       "FROM dbo.rawls_publications " & _
-      "ORDER BY [Acceptance Date] DESC"
+      "ORDER BY acceptance_date DESC"
 
 Set rs = conn.Execute(sql)
 
